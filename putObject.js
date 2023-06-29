@@ -1,6 +1,6 @@
 // Import required AWS SDK clients and commands for Node.js.
-import { PutObjectCommand, CreateBucketCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js";
+import { PutObjectCommand, S3Client  } from "@aws-sdk/client-s3";
+
 
 // Set the parameters
 const params = {
@@ -9,21 +9,26 @@ const params = {
   Body: "Hello world", // The content of the object. For example, 'Hello world!".
 };
 
+const REGION = "br02";
+const ENDPOINT = "https://br02-obstveeam01.uni.cloud:443"; 
+const ACCESS_KEY_ID = "a526f0f32ed240e1a4c09df04b0d5eaa";
+const SECRET_ACCESS_KEY = "ddc13cf862594fcba1da9293b742cda1";
+
+
+const client = new S3Client({ 
+    region: REGION,
+    endpoint: ENDPOINT,
+    forcePathStyle: true,
+    credentials: {
+        accessKeyId: ACCESS_KEY_ID,
+        secretAccessKey: SECRET_ACCESS_KEY
+    }
+});
+
 const run = async () => {
-  // Create an Amazon S3 bucket.
-  try {
-    const data = await s3Client.send(
-        new CreateBucketCommand({ Bucket: params.Bucket })
-    );
-    console.log(data);
-    console.log("Successfully created a bucket called ", data.Location);
-    return data; // For unit tests.
-  } catch (err) {
-    console.log("Error", err);
-  }
   // Create an object and upload it to the Amazon S3 bucket.
   try {
-    const results = await s3Client.send(new PutObjectCommand(params));
+    const results = await client.send(new PutObjectCommand(params));
     console.log(
         "Successfully created " +
         params.Key +
@@ -37,5 +42,5 @@ const run = async () => {
     console.log("Error", err);
   }
 };
-run();
 
+run();
