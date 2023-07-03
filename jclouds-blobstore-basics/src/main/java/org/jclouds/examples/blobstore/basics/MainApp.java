@@ -72,15 +72,11 @@ public class MainApp {
 
    public static void main(String[] args) throws IOException {
 
-      String provider = "aws-s3";
-      String identity = "a526f0f32ed240e1a4c09df04b0d5eaa"; 
-      String credential = "ddc13cf862594fcba1da9293b742cda1";
-      String containerName = "testunicloud";
-      String endpoint = "https://br02-obstveeam01.uni.cloud";
-      String region = "br02";
-      
-
-
+      String provider = "";
+      String identity = ""; 
+      String credential = "";
+      String containerName = "";
+      String endpoint = "";
 
       // Init
       BlobStoreContext context = ContextBuilder.newBuilder(provider)
@@ -96,12 +92,7 @@ public class MainApp {
          System.out.println(resourceMd);
          }
       }
-
-         
-
    }
-
-
 
    private static Properties setupOverrides(String provider) {
       Properties overrides = new Properties();
