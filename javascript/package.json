@@ -10,7 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "@aws-sdk/client-s3": "^3.374.0",
+=======
+    "@aws-sdk/client-s3": "^3.373.0",
+    "@aws-sdk/lib-storage": "^3.383.0",
+    "@aws-sdk/middleware-retry": "^3.374.0",
+>>>>>>> 71b253c (Feat :sparkles: add files)
     "@aws-sdk/node-http-handler": "^3.32.0",
     "@aws-sdk/types": "^3.32.0"
   },
